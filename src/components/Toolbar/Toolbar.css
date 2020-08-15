@@ -1,0 +1,16 @@
+.toolbar__nav {
+    height: 20px;
+    padding: 5px;
+    background: #A0A0A0;
+}
+.toolbar__ul {
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+    float: right;
+}
+.toolbar__ul li {
+    height: inherit;
+    padding: 0 10px;
+    border-bottom: 2px olid transparent;
+}

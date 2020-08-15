@@ -1,0 +1,44 @@
+.item__main {
+    width: 17%;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    height: 250px;
+    max-height: 250px;
+    word-break: break-all;
+    white-space: nowrap;
+}
+
+.item__main:hover {
+    border: 1px solid #FEE715;
+    cursor: pointer;
+}
+
+.item__image {
+    height: 150px;
+}
+
+.item__image img {
+    width: 100%;
+    height: inherit;
+    background-clip: content-box;
+    background-size: cover;
+}
+.item__body--title, .item__body--extra{
+    padding: .625rem;
+    overflow: hidden;
+}
+
+.item__body--title, .item__body--extra {
+    line-height: 1.125rem;
+}
+.item_body--title-holder {
+    line-height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.item_body--price::before {
+    content: '₱'
+}

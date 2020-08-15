@@ -1,0 +1,57 @@
+.range-slider {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.range-slider__input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: red;
+    height: 3px;
+    border-radius: 5px;  
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin: 0;
+}
+
+.range-slider__input:hover {
+    opacity: 1;
+}
+
+.range-slider__input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px;
+    border-radius: 50%; 
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+.range-slider__input::-moz-range-thumb {
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+.range-slider__info {
+    display: flex;
+}
+
+.range-slider__price {
+   flex-grow: 3;
+    text-align: left;
+}
+.range-slider__apply {
+    flex-grow: 1;
+    height: auto;
+}
+
+.range-slider__apply button {
+    margin: 1em 5px;
+}
