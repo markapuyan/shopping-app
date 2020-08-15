@@ -3,13 +3,19 @@ import './Rating.css'
 const Rating = props => {
 
     const res = [...Array(5)].map((_, i) => {
-        return<b key={i} className={props.value <= i ? 'rating' : 'rating--active'}>★</b> 
-    
+        const prop = ['item'];
+        if (props.value > i) {
+           prop.push('item--active')
+        }
+        if(props.size == 'big') {
+            prop.push('item--big')
+        }
+        return<b key={i} className={prop.join(' ')}>★</b> 
     });
 
     return (
-        <div>
-            { res }
+        <div className="rating">
+            {res}
         </div>
     );
 };

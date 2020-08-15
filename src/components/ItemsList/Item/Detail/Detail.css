@@ -1,0 +1,20 @@
+.item-detail__main{
+    display: flex;
+    padding: 10px 0;
+}
+
+.item-detail__image {
+    width: 40%;
+    border: 1px solid #aaa;
+}
+
+.item-detail__info {
+    width: 60%;
+    text-align: left;
+    margin: 0 10px;
+    height: 80vh;
+}
+
+.item-detail__footer {
+    margin-top: 50px;
+}
