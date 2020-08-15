@@ -30,7 +30,7 @@ export const fetchProductsFail = (error) => {
 
 export const setSearchQuery = (query) => {
     return {
-        type: actionTypes.SET_SEARCH_QUERY, 
+        type: actionTypes.SET_SEARCH_QUERY,
         query: query
     }
 }
