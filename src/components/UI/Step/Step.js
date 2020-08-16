@@ -3,7 +3,6 @@ import './Step.scss'
 
 const Step = props => {
     const [count, setCount] = useState(1)
-    console.log(props.quantity)
 
     const quantityHandler = (type) => {
         if(type == 'add' && count < props.quantity) {

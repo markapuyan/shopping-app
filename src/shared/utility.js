@@ -25,3 +25,8 @@ export const parseNewLine = (data) => {
     });
     return newText;
 }
+
+
+export const checkValidation = (email, password) => {
+    return ((email.trim !== null && email !== '')  && (password.trim !== null && password !== ''))
+}

@@ -2,17 +2,15 @@ import React, {useState,} from 'react';
 import Toolbar from 'components/Toolbar/Toolbar'
 import Search from 'components/Search/Search'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
+import { connect } from 'react-redux'
 import './AppLayout.scss'
 
 const AppLayout = props => {
 
-    const searchProductHandler = () => {
-        
-    }
     return (
         <Auxilliary>
-            <Toolbar/>
-            <Search click={searchProductHandler}/>
+            <Toolbar auth={props.isAuthenticated}/>
+            <Search/>
             <div className="applayout">
                 {props.children}
             </div>
@@ -20,4 +18,10 @@ const AppLayout = props => {
     );
 };
 
-export default AppLayout;
+
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
+}
+export default connect(mapStateToProps, null)(AppLayout);
