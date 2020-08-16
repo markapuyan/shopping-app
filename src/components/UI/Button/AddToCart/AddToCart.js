@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddToCart.css'
+import './AddToCart.scss'
 const AddToCart = () => {
     return (
         <button className="add-to-cart__button">

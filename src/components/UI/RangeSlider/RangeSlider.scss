@@ -1,0 +1,58 @@
+.range-slider {
+    width: 95%;
+    margin: 0 auto;
+
+    &__input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        background: red;
+        height: 3px;
+        border-radius: 5px;  
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        margin: 0;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none; 
+            appearance: none;
+            width: 15px; 
+            height: 15px;
+            border-radius: 50%; 
+            background: #4CAF50;
+            cursor: pointer; 
+        }
+
+        &::-moz-range-thumb {
+            width: 15px; 
+            height: 15px;
+            border-radius: 50%;
+            background: #4CAF50; 
+            cursor: pointer; 
+        }
+    }
+
+    &__info {
+        display: flex;
+    }
+
+    &__price {
+        flex-grow: 3;
+        text-align: left;
+    }
+
+    &__apply {
+        flex-grow: 1;
+        height: auto;
+
+        button {
+            margin: 1em 5px;
+        }
+    }
+}

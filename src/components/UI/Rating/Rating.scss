@@ -1,0 +1,14 @@
+.rating {
+    display: inline;
+}
+.item {
+    color: #444857;
+
+    &--active{
+        color: #FEE715;
+    }
+    
+    &--big {
+        font-size: 30px;
+    }
+}

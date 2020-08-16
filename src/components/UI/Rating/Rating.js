@@ -1,5 +1,5 @@
 import React from 'react';
-import './Rating.css'
+import './Rating.scss'
 const Rating = props => {
 
     const res = [...Array(5)].map((_, i) => {

@@ -1,0 +1,43 @@
+.step{
+
+    &__main {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    &__button {
+        outline: 0;
+        width: 30px;
+        padding: 10px;
+        border: 2px solid #eee;
+        text-align: center;
+
+        &:hover {
+            border: 2px solid #FEE715;
+            background-color: #FEE715;
+            cursor: pointer;
+        }
+
+        &--minus {
+            border-radius: 5px 0 0 5px;
+        }
+
+        &--plus {
+            border-radius: 0 5px 5px 0;
+        }
+    }
+
+    &__input {
+        padding: 10px;
+        outline: 0;
+        border: 1px solid #eee;
+        width: 60px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    &__total {
+        padding-left: 10px;
+    }
+}

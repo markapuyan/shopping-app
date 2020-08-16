@@ -1,5 +1,5 @@
 import React from 'react';
-import './RangeSlider.css'
+import './RangeSlider.scss'
 const RangeSlider = props => {
     return (
         <div className="range-slider">
