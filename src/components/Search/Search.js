@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect} from 'react';
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router';
-import { checkIfNull } from '../../shared/utility'
-import * as actions from '../../store/actions/index'
-import './Search.css'
+import { checkIfNull } from 'shared/utility'
+import * as actions from 'store/actions/index'
+import './Search.scss'
 
 const Search = React.memo(props => {
     const [searchQuery, setSearchQuery] = useState('')
@@ -34,7 +34,9 @@ const Search = React.memo(props => {
 
     const redirect = () => {    
         if(checkIfNull(searchQuery)) {
-            history.push('/result')
+            history.push({
+                pathname: '/result',
+                search: `?q=${props.query}`})
             props.onFetchProducts(props.query)
         }
     }

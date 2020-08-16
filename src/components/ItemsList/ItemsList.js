@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import Item from './Item/Item'
-import Spinner from '../UI/Spinner/Spinner'
-import './ItemsList.css'
-import * as actions from '../../store/actions/index'
+import Spinner from 'components/UI/Spinner/Spinner'
+import './ItemsList.scss'
+import * as actions from 'store/actions/index'
 import { connect } from 'react-redux'
 
 const ItemsList =  React.memo(props =>{
@@ -21,9 +21,9 @@ const ItemsList =  React.memo(props =>{
         ))
     }
     return (
-        <div className="search__itemlist_main">
+        <div className="search-itemlist__main">
             <h2>Search result {!props.isLoading && `(${props.products.length})`}</h2>
-            <div className="search__itemlist_group">
+            <div className="search-itemlist__group">
                 {productsList}
             </div>
         </div>

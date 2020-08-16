@@ -1,0 +1,27 @@
+.item-detail {
+    &__main{
+        display: flex;
+        padding: 10px 0;
+    }
+
+    &__image {
+        width: 40%;
+        border: 2px solid #FEE715;
+
+        img {
+            height: auto;
+            width: 100%;
+        }
+    }
+
+    &__info {
+        width: 60%;
+        text-align: left;
+        margin: 0 10px;
+        height: 80vh;
+    }
+
+    &__footer {
+        margin-top: 50px;
+    }
+}

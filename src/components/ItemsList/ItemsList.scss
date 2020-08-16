@@ -1,0 +1,12 @@
+.search-itemlist{
+    &__main {
+        width: 85%;
+        text-align: left;
+        padding: 10px;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

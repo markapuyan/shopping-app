@@ -1,8 +1,8 @@
 import React, {useState,} from 'react';
-import Toolbar from '../../components/Toolbar/Toolbar'
-import Search from '../../components/Search/Search'
-import Auxilliary from '../Auxilliary/Auxilliary';
-import './AppLayout.css'
+import Toolbar from 'components/Toolbar/Toolbar'
+import Search from 'components/Search/Search'
+import Auxilliary from 'hoc/Auxilliary/Auxilliary';
+import './AppLayout.scss'
 
 const AppLayout = props => {
 
