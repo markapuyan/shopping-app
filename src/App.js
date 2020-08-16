@@ -19,7 +19,7 @@ const App = props => {
   
   const routes = (
     <Switch>
-      <Route path="/item-detail/:id" render={() => <Detail/>} {...props}/>
+      <Route path="/item-detail" render={() => <Detail/>} {...props}/>
       <Route path="/result" render={() => <Result/>} {...props}/>
       <Route exact path="/" ender={() => <Main/>} {...props}/>
     </Switch>
@@ -31,7 +31,6 @@ const App = props => {
         <Suspense fallback={<Spinner/>}>
           {routes}
         </Suspense>
-
       </Layout>
     </div>
   );

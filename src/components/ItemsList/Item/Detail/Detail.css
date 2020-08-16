@@ -8,6 +8,11 @@
     border: 1px solid #aaa;
 }
 
+.item-detail__image img {
+    height: auto;
+    width: 100%;
+}
+
 .item-detail__info {
     width: 60%;
     text-align: left;

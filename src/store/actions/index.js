@@ -3,5 +3,9 @@ export {
     fetchProductsStart,
     fetchProductsSuccess,
     fetchProductsFail,
-    setSearchQuery
+    setSearchQuery,
+    fetchProductDetail,
+    fetchProductDetailStart,
+    fetchProductDetailSuccess,
+    fetchProductDetailFail,
 } from './products'

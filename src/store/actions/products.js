@@ -34,3 +34,29 @@ export const setSearchQuery = (query) => {
         query: query
     }
 }
+export const fetchProductDetail = (code) => {
+    return {
+        type: actionTypes.INIT_FETCH_PRODUCT_DETAIL,
+        code: code
+    }
+}
+
+export const fetchProductDetailStart = () => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_DETAIL_START
+    }
+}
+
+export const fetchProductDetailSuccess = (detail) => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_DETAIL_SUCCESS,
+        detail: detail
+    }
+}
+
+export const fetchProductDetailFail = (error) => {
+    return {
+        type: actionTypes.FETCH_PRODUCT_DETAIL_FAIL,
+        error: error
+    }
+}

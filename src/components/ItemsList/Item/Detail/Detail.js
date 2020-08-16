@@ -1,27 +1,66 @@
 import React, {useEffect} from 'react';
+import {useHistory} from 'react-router'
+import { connect } from 'react-redux'
 import Rating from '../../../UI/Rating/Rating'
 import Badge from '../../../UI/Badge/Badge'
 import Step from '../../../UI/Step/Step'
+import Spinner from '../../../UI/Spinner/Spinner'
+import AddToCart from '../../../UI/Button/AddToCart/AddToCart'
+import * as actions from '../../../../store/actions/index'
 import './Detail.css'
-const Detail = () => {
+import Auxilliary from '../../../../hoc/Auxilliary/Auxilliary';
+import { parseNewLine } from '../../../../shared/utility'
+const Detail = React.memo(props => {
 
+    const history = useHistory();
+    useEffect(()=> {
+        let code = history.location.hasOwnProperty('id') ? 
+            history.location.id : 
+            new URLSearchParams(history.location.search).get('code');
+        props.onFetchItemDetail(code)
+    }, [])
+
+    let info = <Spinner/>;
+
+    if(!props.isLoading && props.itemDetail) {
+        info = props.itemDetail.map(item => (
+            <Auxilliary>
+                <div className="item-detail__image">
+                    <img alt={item.name} src={item.image}/>
+                </div>
+                <div className="item-detail__info">
+                    <h1>{item.name}</h1>
+                    <Rating size="big" value={item.rating}/>
+                    <Badge value={item.rating}/>
+                    <h2>P {item.price}</h2>
+                    <div>
+                        {parseNewLine(item.info)}
+                    </div>
+                    <div className="item-detail__footer">
+                        <Step/>
+                        <AddToCart/>
+                    </div>
+                </div>
+            </Auxilliary>
+        ))
+    }
     return (
         <div className="item-detail__main">
-            <div className="item-detail__image">
-                <img/>
-            </div>
-            <div className="item-detail__info">
-                <h1>Deku Funko Pop</h1>
-                <Rating size="big" value={4}/>
-                <Badge value={5}/>
-                <h2>P650</h2>
-                <div className="item-detail__footer">
-                    <Step/>
-                </div>
-            </div>
-            
+            {info}
         </div>
     );
-};
+})
 
-export default Detail;
+const mapStateToProps = state => {
+    return {
+        itemDetail: state.products.itemDetail,
+        isLoading: state.products.isLoading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

@@ -7,7 +7,10 @@ const Item = React.memo(props => {
     const history = useHistory();
 
     const redirectItemHandler = () => {
-        history.push('/item-detail/'+productData.id)
+        history.push( {
+            pathname: '/item-detail',
+            search: '?code='+productData.id,
+            id: productData.id})
     }
 
     return (
