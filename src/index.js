@@ -7,19 +7,16 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
-import productReducer from './store/reducers/products'
+import reducer from './store/reducers'
 import { Provider } from 'react-redux';
-import { watchProducts } from './store/sagas';
+import { watchProducts, watchAuthenticate } from './store/sagas';
 
 const sagaMiddleware = createSagaMiddleware()
 
-const rootReducer = combineReducers({
-  products: productReducer
-})
-
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
 
 sagaMiddleware.run(watchProducts)
+sagaMiddleware.run(watchAuthenticate)
 const app = (
   <Provider store={store}>
     <BrowserRouter>

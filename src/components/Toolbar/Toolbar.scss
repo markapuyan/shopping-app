@@ -11,9 +11,17 @@
         float: right;
 
         li {
-            height: inherit;
             padding: 0 10px;
             border-bottom: 2px olid transparent;
+            display: inline;
+        }
+    }
+
+    &__logo {
+        float: left;
+
+        a {
+            text-decoration: none;
         }
     }
 }
