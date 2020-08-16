@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, useLayoutEffect} from 'react';
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router';
+import { checkIfNull } from '../../shared/utility'
 import * as actions from '../../store/actions/index'
 import './Search.css'
-import { useHistory } from 'react-router';
+
 const Search = React.memo(props => {
     const [searchQuery, setSearchQuery] = useState('')
     const inputRef = useRef();
@@ -15,7 +17,6 @@ const Search = React.memo(props => {
             return
         }
         const timer = setTimeout(() => {
-            // console.log('inputReef', inputRef.current.value)
             if(searchQuery === inputRef.current.value) {
                 props.onSetSearchQuery(searchQuery)
             }
@@ -31,11 +32,13 @@ const Search = React.memo(props => {
         }
     }
 
-    const redirect = () => {
-        history.push('/result')
-        props.onFetchProducts(props.query)
+    const redirect = () => {    
+        if(checkIfNull(searchQuery)) {
+            history.push('/result')
+            props.onFetchProducts(props.query)
+        }
     }
-    
+
     return (
         <div className="search">
             <div className="search__div">

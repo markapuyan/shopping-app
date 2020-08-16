@@ -1,12 +1,13 @@
 .step__main {
     display: flex;
     align-items: center;
+    margin: 20px 0;
 }
 
 .step__button {
     outline: 0;
     width: 30px;
-    padding: 5px 10px;
+    padding: 10px;
     border: 2px solid #eee;
     text-align: center;
 }
@@ -17,7 +18,7 @@
     cursor: pointer;
 }
 .step__input {
-    padding: 5px 10px;
+    padding: 10px;
     outline: 0;
     border: 1px solid #eee;
     width: 60px;

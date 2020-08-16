@@ -1,0 +1,16 @@
+.add-to-cart__button {
+    padding: 15px 25px;
+    text-transform: uppercase;
+    background: #FEE715;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: #444857;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.add-to-cart__button:hover{
+    background: #fec015;
+}
