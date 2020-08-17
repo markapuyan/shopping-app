@@ -1,6 +1,4 @@
 .toast__redirect {
-
-
     &--button {
         padding: 12px 20px;
         background: transparent;
@@ -10,5 +8,12 @@
         color: yellow;
         border: 2px solid yellow;
         border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            border: 2px solid #FFF;
+            background: #FFF;
+            color: rgba(68, 72, 87, 0.85)
+        }
     }
 }

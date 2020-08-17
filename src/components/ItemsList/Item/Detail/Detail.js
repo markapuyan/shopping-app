@@ -34,10 +34,18 @@ const Detail = React.memo(props => {
         }
     }
 
-    const addToCartPath = () => {
-        props.onSaveCurrentItemView(history.location.pathname, history.location.search)
+    const redirect = () => {
         history.push('/auth')
     }
+
+    const addToCartHandler = (item) => {
+        console.log('item', item)
+        setIsToastOpen(!isToastOpen)
+        // if(props.isAuthenticated) {
+        //     props.onAddToCart()
+        // }
+    }
+
     let info = <Spinner/>;
 
     if(!props.isLoading && props.itemDetail) {
@@ -49,7 +57,7 @@ const Detail = React.memo(props => {
                         <Auxilliary>
                             <ToastRedirect >
                                 <h2>Please Login to Purchase</h2>
-                                <button onClick={ addToCartPath } 
+                                <button onClick={ redirect } 
                                     className="toast__redirect--button">GO NOW</button>
                             </ToastRedirect>
                         </Auxilliary>}
@@ -71,7 +79,7 @@ const Detail = React.memo(props => {
                             value={count}
                             click={quantityHandler}/>
                         <AddToCart 
-                            click={setIsToastOpen} 
+                            click={() =>addToCartHandler(item)} 
                             visible={isToastOpen}/>
                     </div>
                 </div>
@@ -95,8 +103,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code)),
-        onSaveCurrentItemView: (pathname, search) => dispatch(actions.initSetProductPath(pathname, search))
+        onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

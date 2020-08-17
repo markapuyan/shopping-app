@@ -8,7 +8,6 @@ export {
     fetchProductDetailStart,
     fetchProductDetailSuccess,
     fetchProductDetailFail,
-    initSetProductPath
 } from './products'
 
 export {
@@ -19,5 +18,5 @@ export {
     checkAuthenticate,
     checkAuthTimeout,
     logout,
-    logoutSuccess
+    logoutSuccess,
 } from './auth'

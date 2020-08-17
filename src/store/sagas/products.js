@@ -28,14 +28,3 @@ export function* fetchProductDetailSaga(action) {
         yield put(actions.fetchProductDetailFail(error))
     }
 }
-
-export function* productPathSaga(action) {
-    const path = localStorage.getItem('productPath')
-    const search = localStorage.getItem('productSearch')
-    if((path !== action.path) || !path){
-        localStorage.setItem('productPath', action.path)
-    }
-    if((search !== action.search) || !search){
-        localStorage.setItem('productSearch', action.search)
-    }
-}

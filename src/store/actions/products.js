@@ -61,10 +61,3 @@ export const fetchProductDetailFail = (error) => {
     }
 }
 
-export const initSetProductPath = (path, search) => {
-    return {
-        type: actionTypes.INIT_SET_PRODUCT_PATH,
-        path: path,
-        search: search
-    }
-}

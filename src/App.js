@@ -6,66 +6,53 @@ import Auth from './containers/Auth/Auth'
 import { connect } from 'react-redux'
 import * as actions from 'store/actions/index'
 import './App.css';
+import PrivateRoute from 'hoc/PrivateRoute/PrivateRoute';
 
-const Detail = React.lazy(() => {
-  return import('./components/ItemsList/Item/Detail/Detail')
-})
+import Cart from 'containers/Cart/Cart'
+import Detail from 'components/ItemsList/Item/Detail/Detail'
+import Profile from 'containers/Profile/Profile'
+import Result from 'containers/Result/Result'
+import Main from 'containers/Main/Main'
 
-const Result = React.lazy(() => {
-  return import('./containers/Result/Result')
-})
-
-const Main = React.lazy(() => {
-  return import('./containers/Main/Main')
-})
 const App = props => {
-  
-
+  const { onCheckAuth } = props;
   useEffect(() => {
-    props.onCheckAuth(props.token, props.expirationDate)
-  }, [])
+    onCheckAuth()
+  }, [onCheckAuth])
+
 
   let routes = (
-  <Switch>
-    <Route path="/item-detail" render={() => <Detail/>} {...props}/>
-    <Route path="/result" render={() => <Result/>} {...props}/>
-    <Route exact path="/" render={() => <Main/>} {...props}/>
-    <Route path="/auth"  component={Auth}/>
-    <Redirect to="/"/>
-  </Switch>)
-
-  if(props.isAuthenticated) {
-    routes = (
       <Switch>
-        <Route path="/item-detail" render={() => <Detail/>} {...props}/>
-        <Route path="/result" render={() => <Result/>} {...props}/>
-        <Route exact path="/" render={() => <Main/>} {...props}/>
+        <PrivateRoute authed={props.isAuthenticated} path="/cart" component={Cart}/>
+        <PrivateRoute authed={props.isAuthenticated} path="/profile" component={Profile}/>
+        <Route path="/item-detail" component={Detail} />
+        <Route path="/result" component={Result} />
+        {props.isAuthenticated && <Route path="/auth" component={Auth}/>}
+        <Route exact path="/" component={Main} />
         <Redirect to="/"/>
       </Switch>)
-  }
   return (
     <div className="App">
-      <Layout>
         <Suspense fallback={<Spinner/>}>
-          {routes}
+          <Layout>
+            {routes}
+           </Layout>
         </Suspense>
-      </Layout>
     </div>
   );
 }
-
 
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
     expirationDate: state.auth.expirationDate,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCheckAuth: (token, expiryDate) => dispatch(actions.checkAuthenticate(token, expiryDate))
+    onCheckAuth: () => dispatch(actions.checkAuthenticate())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
