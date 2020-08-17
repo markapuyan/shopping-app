@@ -1,16 +1,15 @@
 import React from 'react';
+import './ToastRedirect.scss'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
-import MainCarousel from 'components/UI/Carousel/Carousel';
 
-const Main = () => {
+const ToastRedirect = props => {
     return (
         <Auxilliary>
-            {/* <MainCarousel/> */}
             <div>
-                
+                {props.children}
             </div>
         </Auxilliary>
     );
 };
 
-export default Main;
+export default ToastRedirect;

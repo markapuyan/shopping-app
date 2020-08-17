@@ -18,5 +18,5 @@ export {
     checkAuthenticate,
     checkAuthTimeout,
     logout,
-    logoutSuccess
+    logoutSuccess,
 } from './auth'

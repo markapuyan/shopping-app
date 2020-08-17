@@ -5,23 +5,57 @@
     }
 
     &__image {
-        width: 40%;
-        border: 2px solid #FEE715;
+        width: 50%;
 
         img {
             height: auto;
             width: 100%;
+            border: 2px solid #FEE715;
         }
     }
 
     &__info {
-        width: 60%;
+        width: 50%;
         text-align: left;
         margin: 0 10px;
-        height: 80vh;
+        padding-left: 20px;
+        box-sizing: border-box;
     }
 
     &__footer {
         margin-top: 50px;
     }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 425px) {
+
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+    .item-detail {
+        &__main{
+            flex-wrap: wrap;
+        }
+        &__image {
+            width: 100%;
+        }
+
+        &__info {
+            width: 100%;
+        }
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {...}
+
+// /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {...}
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: 992px) {...}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {...}

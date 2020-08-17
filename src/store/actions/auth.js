@@ -13,11 +13,12 @@ export const authenticateStart = () => {
     }
 }
 
-export const authenticateSuccess = (token, id) => {
+export const authenticateSuccess = (token, id, email) => {
     return {
         type: actionTypes.AUTHENTICATE_SUCCESS,
         token: token,
-        id: id
+        id: id,
+        email: email
     }
 }
 

@@ -5,9 +5,8 @@ const initialState = {
     token: null,
     error: null,
     isLoading: false,
-    id: null
+    id: null,
 }
-
 
 const setLoading = (state, action) => {
     return {
@@ -22,6 +21,7 @@ const authenticateSuccess = (state, action) => {
         token: action.token,
         id: action.id,
         isAuthenticated: true,
+        email: action.email
     }
 }
 
@@ -32,15 +32,16 @@ const authenticateFail = (state, action) => {
     }
 }
 
-
 const logout = (state, action) => {
     return {
         ...state,
         isAuthenticated: false,
         token: null,
-        id: null
+        id: null,
+        email: null
     }
 }
+
 const reducer = (state=initialState, action) => {
     switch(action.type) {
         case actionTypes.AUTHENTICATE_START: return setLoading(state, action)
