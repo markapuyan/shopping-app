@@ -16,13 +16,13 @@ const Step = props => {
     return (
         <div className="step__main">
             <button className="step__button step__button--minus"
-                onClick={() => quantityHandler('minus')}>-</button>
+                onClick={() => props.click('minus', props.quantity)}>-</button>
             <input className="step__input"
                 type="text" 
-                value={count}
+                value={props.value}
                 readOnly/>
             <button className="step__button step__button--plus"
-                onClick={() => quantityHandler('add')}>+</button>
+                onClick={() => props.click('add', props.quantity)}>+</button>
             <span className="step__total">{props.quantity} items available</span>
         </div>
     );

@@ -1,0 +1,12 @@
+.toast__main {
+    position: fixed;
+    z-index: 500;
+    background-color: rgba(68,72,87, 0.85);
+    width: 30%;
+    padding: 16px;
+    left: 35%;
+    top: 37%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    color: #FFF;
+}

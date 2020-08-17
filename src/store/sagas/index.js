@@ -3,7 +3,8 @@ import { all, takeEvery } from 'redux-saga/effects'
 import * as actionTypes from '../actions/actionTypes'
 import {
     fetchProductsSaga,
-    fetchProductDetailSaga
+    fetchProductDetailSaga,
+    productPathSaga
 } from './products'
 import {
     authenticateSaga,
@@ -15,7 +16,8 @@ import {
 export function* watchProducts(action) {
     yield all([
         takeEvery(actionTypes.INIT_FETCH_PRODUCTS, fetchProductsSaga),
-        takeEvery(actionTypes.INIT_FETCH_PRODUCT_DETAIL, fetchProductDetailSaga)
+        takeEvery(actionTypes.INIT_FETCH_PRODUCT_DETAIL, fetchProductDetailSaga),
+        takeEvery(actionTypes.INIT_SET_PRODUCT_PATH, productPathSaga)
     ])
 }
 

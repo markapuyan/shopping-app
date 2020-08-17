@@ -8,6 +8,7 @@ export {
     fetchProductDetailStart,
     fetchProductDetailSuccess,
     fetchProductDetailFail,
+    initSetProductPath
 } from './products'
 
 export {
