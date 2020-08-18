@@ -1,9 +1,11 @@
+@import 'assets/scss/variables.scss';
+
 .modal-main {
     position: fixed;
     z-index: 500;
     background-color: #FFF;
     width: 70%;
-    border: 2px solid #FEE715;
+    border: 2px solid $highlight-primary-color;
     padding: 16px;
     left: 15%;
     top: 30%;

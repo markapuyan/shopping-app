@@ -1,34 +1,51 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import * as actions from 'store/actions'
+import CartHeader from 'components/CartDetail/CartHeader'
+import CartFooter from 'components/CartDetail/CartFooter'
+import CartItem from 'components/CartDetail/CartItem'
+import Spinner from 'components/UI/Spinner/Spinner'
 import './Cart.scss'
-const Cart = props => {
+import Auxilliary from 'hoc/Auxilliary/Auxilliary';
+const Cart = React.memo(props => {
 
     useEffect(() => {
         props.onFetchCartDetail()
     }, [])
-
-    let cartDetail = null;
-
-    if(props.cartDetail) {
-        cartDetail = props.cartDetail.map((items, index) => (
-            <div key={index} className="cart__main--table cart__main--table--cols cart__main--table--collapse">
-                <div style={{order: '0'}}className="cart__main--cell cart__main--cell--head">
-                    <input type="checkbox"/>
-                    <label>{items.name}</label>
+    let cartDetail = <Spinner/>;
+    let total = 0;
+    if(!props.isLoading) {
+        if (Array.isArray(props.cartDetail) && props.cartDetail.length) {
+            cartDetail = Object.values(props.cartDetail.reduce((obj, item) => {
+                obj[item.id] ? 
+                    obj[item.id].count = (obj[item.id].count + item.count <=item.availableQuantity) 
+                    ? obj[item.id].count + item.count : item.availableQuantity
+                    : obj[item.id] = {...item};
+                return obj
+            }, {})).map((item, index) => {
+                    total += item.count * item.price;
+                    return <CartItem key={index} itemData={item}/>
+            })
+        } else {
+            cartDetail = <div>
+                <h1>No Data found</h1>
+                <button className="base__button--inverted">Shop now</button>
                 </div>
-                <div style={{order: '1'}} className="cart__main--cell">{items.price}</div>
-                <div style={{order: '2'}} className="cart__main--cell">{items.count}</div>
-                <div style={{order: '3'}} className="cart__main--cell">{items.subprice}</div>
-           </div>
-        ))
+        }
     }
+
     return (
         <div className="cart__main">
-           {!props.isLoading && cartDetail}
+            <CartHeader/>
+           {!props.isLoading && 
+                <Auxilliary>
+                    {cartDetail}
+                    {total > 0 && <CartFooter total={total}/>}
+                </Auxilliary> }
+           
         </div>
     );
-};
+});
 
 const mapStateToProps = state => {
     return {

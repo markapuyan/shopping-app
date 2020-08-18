@@ -1,5 +1,6 @@
+@import 'assets/scss/variables.scss';
 .search {
-    background: #444857;
+    background: $base-primary-color;
     height: 70px;
 
     &__div {
@@ -26,12 +27,13 @@
         border: 0;
         flex-grow: 1;
         outline: none;
-        background: #FEE715;
-        color: #444857;
+        background: $highlight-primary-color;
+        color:  $base-primary-color;
         padding: 10px;
         border-radius: 0 5px 5px 0;
         font-weight: bold;
         cursor: pointer;
+        margin: 0;
     }
 }
 

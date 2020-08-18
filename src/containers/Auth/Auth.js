@@ -42,7 +42,7 @@ const Auth = props => {
                     onChange={(event)=>setPassword(event.target.value)}/>
             </div>
             <div className="auth__form-group">
-                <button type="submit" onClick={validate}>LOGIN</button>
+                <button className="base__button" type="submit" onClick={validate}>LOGIN</button>
             </div>
         </form>
         </Auxilliary>

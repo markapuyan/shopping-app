@@ -3,61 +3,118 @@
       display: -webkit-box;
       display: flex;
       flex-wrap: wrap;
-      margin: 0 0 1em 0;
+      margin: 1em 0 0 0;
       padding: 0;
       position: relative;
       top: 3px;
       left: 3px;
       border-bottom: 1px solid #aaa;
+      align-content: flex-start;
 
       &--cols > .cart__main--cell {
-
+        align-self: flex-start;
         text-align: right;
         &:nth-child(1) {
           width: 40%;
           text-align: left;
+          order: 0;
         }
 
         &:nth-child(2) {
           width: 15%;
+          order: 1;
         }
 
         &:nth-child(3) {
           width: 22.5%;
+          order: 2;
         }
         
         &:nth-child(4) {
           width: 22.5%;
+          order: 3;
         }
       }
+  }
+
+  &--cell {
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0.8em 1.2em;
+    overflow: hidden;
+    list-style: none;
+    border: solid 3px white;
+    background: rgba(112, 128, 144, 0.2);
+    background-color: white;
+    text-align: left;
+
+    img , label {
+      margin-left: 10px;
     }
 
-    &--cell {
-      box-sizing: border-box;
-      -webkit-box-flex: 1;
-      flex-grow: 1;
-      width: 100%;
-      padding: 0.8em 1.2em;
-      overflow: hidden;
-      list-style: none;
-      border: solid 3px white;
-      background: rgba(112, 128, 144, 0.2);
-      background-color: white;
-      text-align: left;
+    &--head {
+      display: flex;
     }
+
+    &--item h6 {
+      display: none;
+      text-transform: uppercase;
+    }
+  }
+  
+  &--heading h5 {
+    text-transform: uppercase;
+  }
+
+  &--footer {
+    border-bottom: 0;
+    h6 {
+      display: none;
+    }
+  }
 }
 
+.cart__image {
+  height: 80px;
+  width: 80px;
+}
 @media all and (max-width: 768px) {
     .cart__main--table--collapse {
       display: block;
     }
+    .cart__main--cell--item h6 {
+      display: inline-block;
+      width: 100px;
+      margin: 0 auto;
 
+    }
+    .cart__main--heading {
+      display: none;
+    }
+    .cart__main--footer {
+      
+      h6 {
+        display: block;
+      }
+      .cart__main--cell {
+        &:not(:nth-child(4)) {
+          display: none;
+        }
+      }
+    }
     .cart__main--table--collapse > .cart__main--cell {
       width: 100% !important;
       text-align: left;
 
       &:nth-child(4) {
         text-align: right;
+
+        h6 {
+          float: left;
+          text-align: left;
+        }
       }
     }
 }

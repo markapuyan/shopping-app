@@ -1,3 +1,5 @@
+@import 'assets/scss/variables.scss';
+
 .item{
 
     &__main {
@@ -12,7 +14,7 @@
         white-space: nowrap;
 
         &:hover {
-            border: 1px solid #FEE715;
+            border: 1px solid $highlight-primary-color;
             cursor: pointer;
         }
     }

@@ -47,6 +47,8 @@ const Detail = React.memo(props => {
                 name: item.name,
                 price: item.price,
                 count: count,
+                image: item.image,
+                availableQuantity: item.quantity,
                 subprice: item.price * count
             }
             props.onAddToCart(data)
@@ -65,7 +67,7 @@ const Detail = React.memo(props => {
                             <ToastRedirect >
                                 <h2>Please Login to Purchase</h2>
                                 <button onClick={ redirect } 
-                                    className="toast__redirect--button">GO NOW</button>
+                                    className="base__button--inverted">GO NOW</button>
                             </ToastRedirect>
                         </Auxilliary>}
                 </Toast>
