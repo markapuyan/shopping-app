@@ -1,3 +1,5 @@
+@import 'assets/scss/variables.scss';
+
 .step{
 
     &__main {
@@ -14,8 +16,8 @@
         text-align: center;
 
         &:hover {
-            border: 2px solid #FEE715;
-            background-color: #FEE715;
+            border: 2px solid $highlight-primary-color;
+            background-color: $highlight-primary-color;
             cursor: pointer;
         }
 

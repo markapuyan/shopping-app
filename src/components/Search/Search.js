@@ -50,7 +50,7 @@ const Search = React.memo(props => {
                     type="text"
                     onKeyDown={keyDownHandler}
                     onChange={event=>setSearchQuery(event.target.value)}/>
-                <button className="search__submit" 
+                <button className="base__button search__submit" 
                     onClick={redirect}>SEARCH</button>
             </div>
         </div>

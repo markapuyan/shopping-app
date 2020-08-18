@@ -1,11 +1,13 @@
+@import 'assets/scss/variables.scss';
+
 .rating {
     display: inline;
 }
 .item {
-    color: #444857;
+    color: $base-primary-color;
 
     &--active{
-        color: #FEE715;
+        color: $highlight-primary-color;
     }
     
     &--big {

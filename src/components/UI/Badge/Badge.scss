@@ -1,6 +1,8 @@
+@import 'assets/scss/variables.scss';
+
 .badge {
     padding: 0 10px;
-    background: #444857;
+    background: $base-primary-color;
     position: absolute;
     margin-top: 10px;
     color: wheat;
