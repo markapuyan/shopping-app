@@ -61,3 +61,54 @@ export const fetchProductDetailFail = (error) => {
     }
 }
 
+export const addToCart = (item) => {
+    return {
+        type: actionTypes.ADD_TO_CART,
+        item: item
+    }
+}
+
+export const addToCartStart = () => {
+    return {
+        type: actionTypes.ADD_TO_CART_START
+    }
+}
+
+export const addToCartSuccess = () => {
+    return {
+        type: actionTypes.ADD_TO_CART_SUCCESS
+    }
+}
+
+export const addToCartFail = (error) => {
+    return {
+        type: actionTypes.ADD_TO_CART_FAIL,
+        error: error
+    }
+}
+
+export const fetchCartDetail = () => {
+    return {
+        type: actionTypes.FETCH_CART_DETAIL
+    }
+}
+
+export const fetchCartDetailStart = () => {
+    return {
+        type: actionTypes.FETCH_CART_DETAIL_START
+    }
+}
+
+export const fetchCartDetailSuccess = (cartDetail) => {
+    return {
+        type: actionTypes.FETCH_CART_DETAIL_SUCCESS,
+        cartDetail: cartDetail
+    }
+}
+
+export const fetchCartDetailFail = (error) => {
+    return {
+        type: actionTypes.FETCH_CART_DETAIL_FAIL,
+        error: error
+    }
+}

@@ -8,6 +8,7 @@
         display: inline-flex;
         flex-wrap: nowrap;
         padding: 10px;
+        box-sizing: border-box;
     }
 
     &__input {
@@ -31,5 +32,22 @@
         border-radius: 0 5px 5px 0;
         font-weight: bold;
         cursor: pointer;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .search__div {
+        width: auto;
+    }
+    .search__input {
+        width: 80%;
+    }
+}
+
+@media (min-width:501px) and (max-width: 768px) {
+    .search__div {
+        width: 70%;
     }
 }

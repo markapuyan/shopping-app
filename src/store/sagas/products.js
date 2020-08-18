@@ -28,3 +28,31 @@ export function* fetchProductDetailSaga(action) {
         yield put(actions.fetchProductDetailFail(error))
     }
 }
+
+export function* addToCartSaga(action) {
+    const email = localStorage.getItem('email');
+    const data = {...action.item, email: email}
+    yield put(actions.addToCartStart())
+    try {
+        const response = axios.post('/addtocart.json', data)
+        yield put(actions.addToCartSuccess())
+
+    } catch(error) {
+        console.log(error)
+        yield put(actions.addToCartFail(error))
+    }
+}
+
+export function* fetchCartDetailSaga(action) {
+    const email = localStorage.getItem('email');
+    const query = '?orderBy="email"&equalTo="'+email+'"';
+    yield put(actions.fetchCartDetailStart())
+    try {
+        const response = yield axios.get('/addtocart.json' +query)
+        const products = formatResponseData(response.data)
+        console.log(products)
+        yield put(actions.fetchCartDetailSuccess(products))
+    } catch(error) {
+        yield put(actions.fetchCartDetailFail(error))
+    }
+}

@@ -16,6 +16,7 @@ export const formatResponseData = (data) => {
             ...data[key]
         })
     }
+    console.log('arry', arrayValue)
     return arrayValue;
 }
 

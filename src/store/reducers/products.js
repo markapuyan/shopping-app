@@ -5,13 +5,21 @@ const initialState = {
     isLoading: false,
     query: '',
     error: null,
-    itemDetail: null
+    itemDetail: null,
+    cartDetail: null
 }
 
 const setLoading = (state, action) => {
     return {
         ...state,
         isLoading: true
+    }
+}
+
+const setStopLoading = (state, action) => {
+    return {
+        ...state,
+        isLoading: false
     }
 }
 
@@ -45,6 +53,15 @@ const fetchProductDetailSuccess = (state, action) => {
         isLoading: false
     }
 }
+
+const setCartDetail = (state, action) => {
+    return {
+        ...state,
+        cartDetail: action.cartDetail,
+        isLoading: false
+    }
+}
+
 const reducer = (state=initialState, action) => {
     switch(action.type) {
         case actionTypes.FETCH_PRODUCTS_START: return setLoading(state, action)
@@ -54,6 +71,12 @@ const reducer = (state=initialState, action) => {
         case actionTypes.FETCH_PRODUCT_DETAIL_START: return setLoading(state, action)
         case actionTypes.FETCH_PRODUCT_DETAIL_SUCCESS: return fetchProductDetailSuccess(state, action)
         case actionTypes.FETCH_PRODUCT_DETAIL_FAIL: return setError(state, action)
+        case actionTypes.ADD_TO_CART_START: return setLoading(state, action)
+        case actionTypes.ADD_TO_CART_SUCCESS: return setStopLoading(state, action)
+        case actionTypes.ADD_TO_CART_FAIL: return setError(state, action)
+        case actionTypes.FETCH_CART_DETAIL_START: return setLoading(state, action)
+        case actionTypes.FETCH_CART_DETAIL_SUCCESS: return setCartDetail(state, action)
+        case actionTypes.FETCH_CART_DETAIL_FAIL: return setError(state, action)
         default:
             return state;
     }

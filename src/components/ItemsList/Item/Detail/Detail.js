@@ -12,11 +12,12 @@ import './Detail.scss'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
 import { parseNewLine } from 'shared/utility'
 import ToastRedirect from 'components/UI/Toast/ToastRedirect/ToastRedirect';
-const Detail = React.memo(props => {
 
+const Detail = React.memo(props => {
     const [isToastOpen, setIsToastOpen] = useState(false)
     const [count, setCount] = useState(1)
     const history = useHistory();
+
     useEffect(()=> {
         let code = history.location.hasOwnProperty('id') ? 
             history.location.id : 
@@ -39,11 +40,17 @@ const Detail = React.memo(props => {
     }
 
     const addToCartHandler = (item) => {
-        console.log('item', item)
         setIsToastOpen(!isToastOpen)
-        // if(props.isAuthenticated) {
-        //     props.onAddToCart()
-        // }
+        if(props.isAuthenticated) {
+            const data = {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                count: count,
+                subprice: item.price * count
+            }
+            props.onAddToCart(data)
+        }
     }
 
     let info = <Spinner/>;
@@ -103,7 +110,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code))
+        onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code)),
+        onAddToCart: (item) => dispatch(actions.addToCart(item)) 
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
