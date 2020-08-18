@@ -16,7 +16,6 @@ export const formatResponseData = (data) => {
             ...data[key]
         })
     }
-    console.log('arry', arrayValue)
     return arrayValue;
 }
 
@@ -30,4 +29,16 @@ export const parseNewLine = (data) => {
 
 export const checkValidation = (email, password) => {
     return ((email.trim !== null && email !== '')  && (password.trim !== null && password !== ''))
+}
+
+export const formatCartData = (data) => {
+    let arrayValue = [];
+    arrayValue = Object.values(data.reduce((obj, item) => {
+        obj[item.id] ? 
+            obj[item.id].count = (obj[item.id].count + item.count <=item.availableQuantity) 
+            ? obj[item.id].count + item.count : item.availableQuantity
+            : obj[item.id] = {...item};
+        return obj
+    }, {}))
+    return arrayValue
 }

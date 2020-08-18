@@ -38,7 +38,6 @@ export function* addToCartSaga(action) {
         yield put(actions.addToCartSuccess())
 
     } catch(error) {
-        console.log(error)
         yield put(actions.addToCartFail(error))
     }
 }
@@ -50,7 +49,6 @@ export function* fetchCartDetailSaga(action) {
     try {
         const response = yield axios.get('/addtocart.json' +query)
         const products = formatResponseData(response.data)
-        console.log(products)
         yield put(actions.fetchCartDetailSuccess(products))
     } catch(error) {
         yield put(actions.fetchCartDetailFail(error))

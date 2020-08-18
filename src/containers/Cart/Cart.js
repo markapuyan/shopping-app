@@ -7,28 +7,22 @@ import CartItem from 'components/CartDetail/CartItem'
 import Spinner from 'components/UI/Spinner/Spinner'
 import './Cart.scss'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
+import Empty from 'components/UI/Empty/Empty';
+import { formatCartData } from 'shared/utility.js'
 const Cart = React.memo(props => {
 
-    useEffect(() => {
-        props.onFetchCartDetail()
-    }, [])
     let cartDetail = <Spinner/>;
     let total = 0;
+
     if(!props.isLoading) {
         if (Array.isArray(props.cartDetail) && props.cartDetail.length) {
-            cartDetail = Object.values(props.cartDetail.reduce((obj, item) => {
-                obj[item.id] ? 
-                    obj[item.id].count = (obj[item.id].count + item.count <=item.availableQuantity) 
-                    ? obj[item.id].count + item.count : item.availableQuantity
-                    : obj[item.id] = {...item};
-                return obj
-            }, {})).map((item, index) => {
+            cartDetail = formatCartData(props.cartDetail || []).map((item, index) => {
                     total += item.count * item.price;
                     return <CartItem key={index} itemData={item}/>
             })
         } else {
             cartDetail = <div>
-                <h1>No Data found</h1>
+                <Empty/>
                 <button className="base__button--inverted">Shop now</button>
                 </div>
         }
@@ -42,7 +36,6 @@ const Cart = React.memo(props => {
                     {cartDetail}
                     {total > 0 && <CartFooter total={total}/>}
                 </Auxilliary> }
-           
         </div>
     );
 });
@@ -54,9 +47,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onFetchCartDetail: () => dispatch(actions.fetchCartDetail())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps)(Cart);

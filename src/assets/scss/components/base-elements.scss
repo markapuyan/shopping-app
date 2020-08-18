@@ -1,5 +1,3 @@
-
-
 @mixin base__button_prop {
     padding: 15px 25px;
     text-transform: uppercase;
@@ -9,14 +7,13 @@
     font-weight: bold;
     border-radius: 5px;
     margin: 10px 0;
-
 }
-
 
 .base__button {
     @include base__button_prop;
     background: $highlight-primary-color;
     color: $base-primary-color;
+    
     &:hover {
         background: $highlight-secondary-color;
     }
@@ -33,4 +30,13 @@
             color: #FFF;
         }
     }
+}
+
+.base__badge {
+    padding: 1px 8px;
+    background: $highlight-primary-color;
+    border-radius: 50px;
+    font-size: 13px;
+    color: $base-primary-color;
+    font-weight: bold;
 }
