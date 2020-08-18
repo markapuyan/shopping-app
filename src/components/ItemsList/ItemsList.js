@@ -4,6 +4,7 @@ import Spinner from 'components/UI/Spinner/Spinner'
 import './ItemsList.scss'
 import * as actions from 'store/actions/index'
 import { connect } from 'react-redux'
+import Empty from 'components/UI/Empty/Empty'
 
 const ItemsList =  React.memo(props =>{
 
@@ -13,13 +14,19 @@ const ItemsList =  React.memo(props =>{
 
     let productsList = <Spinner/>;
 
-    if(props.products && !props.isLoading) {
-        productsList = props.products.map(product => (
-            <Item
-                key={product.id}
-                productData={product}/>
-        ))
+
+    if(!props.isLoading) {
+        if (Array.isArray(props.products) && props.products.length) {
+            productsList = props.products.map(product => (
+                <Item
+                    key={product.id}
+                    productData={product}/>
+            ))
+        } else {
+            productsList = <Empty/>
+        }
     }
+
     return (
         <div className="search-itemlist__main">
             <h2>Search result {!props.isLoading && `(${props.products.length})`}</h2>
