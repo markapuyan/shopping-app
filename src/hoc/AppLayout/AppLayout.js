@@ -1,18 +1,31 @@
-import React, {useState,} from 'react';
+import React, {useState, useEffect,} from 'react';
 import Toolbar from 'components/Toolbar/Toolbar'
 import Search from 'components/Search/Search'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
+import { formatCartData } from 'shared/utility';
 import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import './AppLayout.scss'
 
 const AppLayout = props => {
 
+    useEffect(() => {
+        props.onFetchCartDetail()
+    }, [])
+
+    let count = 0;
+
+    if(!props.isLoading) {
+        if (Array.isArray(props.cartDetail) && props.cartDetail.length) {
+           count = formatCartData(props.cartDetail).length
+        }
+    }
     return (
         <Auxilliary>
-            <Toolbar 
+            {!props.isLoading && <Toolbar 
+                count={count}
                 auth={props.isAuthenticated}
-                logout={props.onLogout}/>
+                logout={props.onLogout}/>}
             <Search/>
             <div className="applayout">
                 {props.children}
@@ -21,15 +34,18 @@ const AppLayout = props => {
     );
 };
 
-
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        cartDetail: state.products.cartDetail,
+        isLoading: state.products.isLoading
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.logout())
+        onLogout: () => dispatch(actions.logout()),
+        onFetchCartDetail: () => dispatch(actions.fetchCartDetail())
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(AppLayout);
