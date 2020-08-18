@@ -1,9 +1,11 @@
 
-import { all, takeEvery } from 'redux-saga/effects'
+import { all, takeEvery, take } from 'redux-saga/effects'
 import * as actionTypes from '../actions/actionTypes'
 import {
     fetchProductsSaga,
     fetchProductDetailSaga,
+    addToCartSaga,
+    fetchCartDetailSaga
 } from './products'
 import {
     authenticateSaga,
@@ -16,7 +18,9 @@ export function* watchProducts(action) {
     yield all([
         takeEvery(actionTypes.INIT_FETCH_PRODUCTS, fetchProductsSaga),
         takeEvery(actionTypes.INIT_FETCH_PRODUCT_DETAIL, fetchProductDetailSaga),
-    ])
+        takeEvery(actionTypes.ADD_TO_CART, addToCartSaga),
+        takeEvery(actionTypes.FETCH_CART_DETAIL, fetchCartDetailSaga)
+    ])  
 }
 
 export function* watchAuthenticate(action) {
