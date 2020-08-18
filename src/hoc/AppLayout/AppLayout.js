@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import './AppLayout.scss'
 
-const AppLayout = props => {
+const AppLayout = React.memo(props => {
 
     useEffect(() => {
         props.onFetchCartDetail()
@@ -32,7 +32,7 @@ const AppLayout = props => {
             </div>
         </Auxilliary>
     );
-};
+});
 
 const mapStateToProps = state => {
     return {

@@ -46,6 +46,12 @@
 
         &__info {
             width: 100%;
+            padding-left: 0;
+            margin: 0 auto;
+        }
+
+        &__footer .base__button {
+            width: 100%;
         }
     }
 }
