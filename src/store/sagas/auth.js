@@ -35,6 +35,7 @@ export function* logoutSaga(action) {
 }
 
 export function* checkAuthenticateSaga(action) {
+    yield put(actions.authenticateStart());
     const token = localStorage.getItem('token')
     const email = localStorage.getItem('email')
     if(!token || !email) {

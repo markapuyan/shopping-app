@@ -1,16 +1,57 @@
-.cart__main {
-    overflow-x:auto;
-    
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-        border: 1px solid #ddd;
+.cart__main{
+    &--table {
+      display: -webkit-box;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 0 3em 0;
+      padding: 0;
+      position: relative;
+      top: 3px;
+      left: 3px;
+
+      &--2cols > .cart__main--cell {
+        width: 50%;
       }
-      
-      th, td {
-        text-align: left;
-        padding: 8px;
+
+      &--3cols > .cart__main--cell {
+        width: 33.33%;
       }
-      
+
+      &--4cols > .cart__main--cell {
+        width: 25%;
+      }
+
+      &--5cols > .cart__main--cell {
+        width: 20%;
+      }
+
+      &--6cols > .cart__main--cell {
+        width: 16.6%;
+      }
+    }
+
+    &--cell {
+      box-sizing: border-box;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+      width: 100%;
+      padding: 0.8em 1.2em;
+      overflow: hidden;
+      list-style: none;
+      border: solid 3px white;
+      background: rgba(112, 128, 144, 0.2);
+      margin: -3px 0 0 -3px;
+      background-color: white;
+      text-align: left;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .cart__main--table--collapse {
+      display: block;
+    }
+
+    .cart__main--table--collapse > .cart__main--cell {
+      width: 100% !important;
+    }
 }
