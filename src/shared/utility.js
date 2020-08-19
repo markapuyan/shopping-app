@@ -42,3 +42,7 @@ export const formatCartData = (data) => {
     }, {}))
     return arrayValue
 }
+
+export const checkIfArrayIsNull = (data) => {
+    return (Array.isArray(data) && data.length)
+}

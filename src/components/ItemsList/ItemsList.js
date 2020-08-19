@@ -1,22 +1,17 @@
-import React, {useEffect} from 'react'
+import React  from 'react'
+import { connect } from 'react-redux'
 import Item from './Item/Item'
 import Spinner from 'components/UI/Spinner/Spinner'
-import './ItemsList.scss'
-import * as actions from 'store/actions/index'
-import { connect } from 'react-redux'
 import Empty from 'components/UI/Empty/Empty'
+import { checkIfArrayIsNull } from 'shared/utility'
+import * as actions from 'store/actions/index'
+import './ItemsList.scss'
 
 const ItemsList =  React.memo(props =>{
-
-    // useEffect(() => {
-    //     props.onFetchProducts()
-    // }, [])
-
     let productsList = <Spinner/>;
-
-
+    
     if(!props.isLoading) {
-        if (Array.isArray(props.products) && props.products.length) {
+        if (checkIfArrayIsNull(props.products)) {
             productsList = props.products.map(product => (
                 <Item
                     key={product.id}
@@ -36,7 +31,6 @@ const ItemsList =  React.memo(props =>{
         </div>
     );
 });
-
 
 const mapStateToProps = state => {
     return {

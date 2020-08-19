@@ -7,7 +7,7 @@ import CartCheckout from 'components/CartDetail/CartCheckout'
 import Spinner from 'components/UI/Spinner/Spinner'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
 import Empty from 'components/UI/Empty/Empty';
-import { formatCartData } from 'shared/utility.js'
+import { formatCartData, checkIfArrayIsNull } from 'shared/utility.js'
 import { ShoppingCartOutlined } from '@ant-design/icons'
 import './Cart.scss'
 const Cart = React.memo(props => {
@@ -50,14 +50,14 @@ const Cart = React.memo(props => {
     }, [isLoading])
 
     if(!isLoading) {
-        if (Array.isArray(props.cartDetail) && props.cartDetail.length) {
+        if (checkIfArrayIsNull(props.cartDetail)) {
             cartDetail = formatCartData(props.cartDetail || []).map((item, index) => {
                 let checkedValue = cartTotal.filter(cartItem => cartItem.id == item.id)
                 return <CartItem 
                     key={index} 
                     itemData={item} 
                     change={priceHandler}
-                    isIncluded={Array.isArray(checkedValue) && checkedValue.length}/>
+                    isIncluded={checkIfArrayIsNull(checkedValue)}/>
             })
 
         } else {
@@ -73,7 +73,7 @@ const Cart = React.memo(props => {
             <h1 className="base__title"><ShoppingCartOutlined/> Cart</h1>
             <CartHeader/>
                 {cartDetail}
-                {(Array.isArray(props.cartDetail) && props.cartDetail.length) && <Auxilliary>
+                {checkIfArrayIsNull(props.cartDetail) && <Auxilliary>
                     <CartFooter total={total}/>
                     <CartCheckout />
                 </Auxilliary>}
