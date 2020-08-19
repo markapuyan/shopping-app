@@ -9,6 +9,7 @@
     box-sizing: border-box;
     transition: all 0.3s ease-out;
     color: #FFF;
+    text-align: center;
 
     &--show {
         transform: translateY(0);
