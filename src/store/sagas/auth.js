@@ -13,6 +13,7 @@ export function* authenticateSaga(action) {
         localStorage.setItem('userId', response.data.localId)
         localStorage.setItem('email', action.data.email)
         yield put(actions.authenticateSuccess(response.data.idToken, response.data.localId, action.data.email))
+        yield put(actions.fetchCartDetail())
         yield put(actions.checkAuthTimeout(response.data.expiresIn))
 
 

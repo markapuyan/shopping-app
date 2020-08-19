@@ -8,6 +8,7 @@ import Profile from 'containers/Profile/Profile'
 import Result from 'containers/Result/Result'
 import Main from 'containers/Main/Main'
 import PrivateRoute from 'hoc/PrivateRoute/PrivateRoute'
+import Spinner from 'components/UI/Spinner/Spinner'
 import { connect } from 'react-redux'
 import * as actions from 'store/actions/index'
 import './App.css';
@@ -32,9 +33,11 @@ const App = props => {
   )
   return (
     <div className="App">
-      <Layout>
-          {props.isLoading && routes}
-      </Layout>
+      <Suspense fallback={<Spinner/>}>
+        <Layout>
+            {props.isLoading && routes}
+        </Layout>
+      </Suspense>
     </div>
   );
 }

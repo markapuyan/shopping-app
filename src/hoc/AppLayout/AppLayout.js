@@ -8,10 +8,10 @@ import * as actions from 'store/actions'
 import './AppLayout.scss'
 
 const AppLayout = React.memo(props => {
-
+    const { onFetchCartDetail } = props;
     useEffect(() => {
-        props.onFetchCartDetail()
-    }, [])
+        onFetchCartDetail()
+    }, [onFetchCartDetail])
 
     let count = 0;
 
@@ -22,10 +22,10 @@ const AppLayout = React.memo(props => {
     }
     return (
         <Auxilliary>
-            {!props.isLoading && <Toolbar 
+            <Toolbar 
                 count={count}
                 auth={props.isAuthenticated}
-                logout={props.onLogout}/>}
+                logout={props.onLogout}/>
             <Search/>
             <div className="applayout">
                 {props.children}
