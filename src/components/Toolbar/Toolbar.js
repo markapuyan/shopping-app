@@ -11,7 +11,7 @@ const Toolbar = props => {
     if(props.auth) {
         navigation = (
             <Auxilliary>
-                <li><Link to="/cart">Cart <span className="base__badge">{props.count > 0 && props.count}</span></Link></li>
+                <li><Link to="/cart">Cart {props.count > 0 && <span className="base__badge">{props.count}</span>}</Link></li>
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link onClick={props.logout}>Logout</Link></li>
             </Auxilliary>
