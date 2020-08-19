@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {DeleteOutlined} from '@ant-design/icons'
 const CartItem = props => {
     const { itemData} = props;
     return (
@@ -7,11 +7,16 @@ const CartItem = props => {
             <div className="cart__main--cell cart__main--cell--head">
                 <input 
                     type="checkbox"
-                    onChange={ () =>props.change(itemData.id, itemData.count * itemData.price)}
+                    onChange={ () =>props.change(itemData.product_id, itemData.count * itemData.price)}
                     checked={props.isIncluded}
                     />
                 <img className="cart__image" src={itemData.image}/>
-                <label>{itemData.name}</label>
+                <div className="cart__product-name">
+                    <label>{itemData.name}</label>
+                    <br/>
+                    <button className="base__button--inverted--danger btn--sm"
+                        onClick={() => props.click(itemData)}><DeleteOutlined /> REMOVE</button>
+                </div>
             </div>
             <div className="cart__main--cell cart__main--cell--item">
                 <h6>Quantity</h6>{itemData.count}</div>
