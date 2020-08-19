@@ -55,12 +55,18 @@ const Detail = React.memo(props => {
         }
     }
 
+    const  updateCart = () => {
+        setIsToastOpen(!isToastOpen)
+        props.onFetchCartDetail()
+    }
     let info = <Spinner/>;
 
     if(!props.isLoading && props.itemDetail) {
         info = props.itemDetail.map(item => (
             <Auxilliary>
-                <Toast visible ={isToastOpen}>
+                <Toast 
+                    visible ={isToastOpen}
+                    close={updateCart}>
                     {props.isAuthenticated ? 
                         <h1>Item Successfully added to cart!</h1> : 
                         <Auxilliary>
@@ -113,7 +119,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchItemDetail: (code) => dispatch(actions.fetchProductDetail(code)),
-        onAddToCart: (item) => dispatch(actions.addToCart(item)) 
+        onAddToCart: (item) => dispatch(actions.addToCart(item)),
+        onFetchCartDetail: () => dispatch(actions.fetchCartDetail())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

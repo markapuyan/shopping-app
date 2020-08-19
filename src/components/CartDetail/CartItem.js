@@ -1,13 +1,15 @@
 import React from 'react';
 
 const CartItem = props => {
-
     const { itemData} = props;
-
     return (
-        <div  className="cart__main--table cart__main--table--cols cart__main--table--collapse">
+        <div  className="cart__main--table cart__main--table--cols cart__main--table--collapse cart--item-detail">
             <div className="cart__main--cell cart__main--cell--head">
-                <input type="checkbox"/>
+                <input 
+                    type="checkbox"
+                    onChange={ () =>props.change(itemData.id, itemData.count * itemData.price)}
+                    checked={props.isIncluded}
+                    />
                 <img className="cart__image" src={itemData.image}/>
                 <label>{itemData.name}</label>
             </div>
