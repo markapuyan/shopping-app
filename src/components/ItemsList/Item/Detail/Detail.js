@@ -11,7 +11,6 @@ import * as actions from 'store/actions/index'
 import './Detail.scss'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
 import { parseNewLine } from 'shared/utility'
-import ToastRedirect from 'components/UI/Toast/ToastRedirect/ToastRedirect';
 
 const Detail = React.memo(props => {
     const [isToastOpen, setIsToastOpen] = useState(false)
@@ -43,7 +42,7 @@ const Detail = React.memo(props => {
         setIsToastOpen(!isToastOpen)
         if(props.isAuthenticated) {
             const data = {
-                id: item.id,
+                product_id: item.id,
                 name: item.name,
                 price: item.price,
                 count: count,
@@ -66,16 +65,13 @@ const Detail = React.memo(props => {
             <Auxilliary>
                 <Toast 
                     visible ={isToastOpen}
-                    close={updateCart}>
-                    {props.isAuthenticated ? 
-                        <h1>Item Successfully added to cart!</h1> : 
-                        <Auxilliary>
-                            <ToastRedirect >
-                                <h2>Please Login to Purchase</h2>
-                                <button onClick={ redirect } 
-                                    className="base__button--inverted">GO NOW</button>
-                            </ToastRedirect>
-                        </Auxilliary>}
+                    close={updateCart}
+                    title={props.isAuthenticated ?
+                        'Item Successfully added to cart!':
+                        'Please Login to Purchase'}>
+                        {!props.isAuthenticated && 
+                            <button onClick={ redirect } 
+                            className="base__button--inverted">GO NOW</button>}
                 </Toast>
                 <div className="item-detail__image">
                     <img alt={item.name} src={item.image}/>

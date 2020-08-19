@@ -1,9 +1,15 @@
 import React from 'react';
-
-const CartCheckout = () => {
+import { ShoppingCartOutlined } from '@ant-design/icons'
+const CartCheckout = props => {
     return (
         <div className="cart-checkout__main">
-            <button className="base__button--inverted--danger">Clear Cart</button>
+            <div>
+                <button className="base__button--inverted--danger">Clear Cart</button>
+            </div>
+            <div>
+                <button className="base__button"><ShoppingCartOutlined/> Checkout {props.count > 0 && <span>({props.count})</span>}</button>
+            </div>
+            
         </div>
     );
 };

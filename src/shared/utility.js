@@ -26,7 +26,6 @@ export const parseNewLine = (data) => {
     return newText;
 }
 
-
 export const checkValidation = (email, password) => {
     return ((email.trim !== null && email !== '')  && (password.trim !== null && password !== ''))
 }
@@ -34,10 +33,14 @@ export const checkValidation = (email, password) => {
 export const formatCartData = (data) => {
     let arrayValue = [];
     arrayValue = Object.values(data.reduce((obj, item) => {
-        obj[item.id] ? 
-            obj[item.id].count = (obj[item.id].count + item.count <=item.availableQuantity) 
-            ? obj[item.id].count + item.count : item.availableQuantity
-            : obj[item.id] = {...item};
+        if (obj[item.product_id]) {
+            obj[item.product_id].id = [].concat(obj[item.product_id].id, item.id)
+            obj[item.product_id].count = (obj[item.product_id].count + item.count <=item.availableQuantity) 
+            ? obj[item.product_id].count + item.count : item.availableQuantity
+        } else {
+            obj[item.product_id] = {...item};
+        }
+
         return obj
     }, {}))
     return arrayValue

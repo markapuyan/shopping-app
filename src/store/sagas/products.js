@@ -48,6 +48,8 @@ export function* fetchCartDetailSaga(action) {
     yield put(actions.fetchCartDetailStart())
     try {
         const response = yield axios.get('/addtocart.json' +query)
+
+        console.log('sadad', response.data)
         const products = formatResponseData(response.data)
         yield put(actions.fetchCartDetailSuccess(products))
     } catch(error) {

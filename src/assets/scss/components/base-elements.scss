@@ -13,9 +13,11 @@
     @include base__button_prop;
     background: $highlight-primary-color;
     color: $base-primary-color;
-    
+    border: 2px solid $highlight-primary-color;
+
     &:hover {
         background: $highlight-secondary-color;
+        border: 2px solid $highlight-secondary-color;
     }
 
     &--inverted {
@@ -43,6 +45,17 @@
             color: #FFF;
         }
     }
+
+    &--sm {
+        @include base__button_prop;
+        padding: 5px;
+    }
+}
+
+.btn--sm {
+    padding: 2px 5px !important;
+    border: 2px solid transparent;
+    font-size: 11px;
 }
 
 .base__badge {
