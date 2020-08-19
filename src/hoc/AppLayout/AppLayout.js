@@ -1,9 +1,9 @@
 import React, {useState, useEffect,} from 'react';
+import { connect } from 'react-redux'
+import { formatCartData, checkIfArrayIsNull } from 'shared/utility';
 import Toolbar from 'components/Toolbar/Toolbar'
 import Search from 'components/Search/Search'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
-import { formatCartData } from 'shared/utility';
-import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import './AppLayout.scss'
 
@@ -16,13 +16,13 @@ const AppLayout = React.memo(props => {
     let count = 0;
 
     if(!props.isLoading) {
-        if (Array.isArray(props.cartDetail) && props.cartDetail.length) {
+        if (checkIfArrayIsNull(props.cartDetail)) {
            count = formatCartData(props.cartDetail).length
         }
     }
     return (
         <Auxilliary>
-            <Toolbar 
+            <Toolbar
                 count={count}
                 auth={props.isAuthenticated}
                 logout={props.onLogout}/>
