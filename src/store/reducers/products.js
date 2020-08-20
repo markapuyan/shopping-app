@@ -77,6 +77,9 @@ const reducer = (state=initialState, action) => {
         case actionTypes.FETCH_CART_DETAIL_START: return setLoading(state, action)
         case actionTypes.FETCH_CART_DETAIL_SUCCESS: return setCartDetail(state, action)
         case actionTypes.FETCH_CART_DETAIL_FAIL: return setError(state, action)
+        case actionTypes.REMOVE_ITEM_FROM_CART_START: return setLoading(state, action)
+        case actionTypes.REMOVE_ITEM_FROM_CART_SUCCESS: return setStopLoading(state, action)
+        case actionTypes.REMOVE_ITEM_FROM_CART: return setError(state, action)
         default:
             return state;
     }

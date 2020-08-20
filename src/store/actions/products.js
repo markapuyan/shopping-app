@@ -112,3 +112,29 @@ export const fetchCartDetailFail = (error) => {
         error: error
     }
 }
+
+export const removeItemFromCart = (itemData) => {
+    return {
+        type: actionTypes.REMOVE_ITEM_FROM_CART,
+        itemData: itemData
+    }
+}
+
+export const removeItemFromCartStart = () => {
+    return {
+        type: actionTypes.REMOVE_ITEM_FROM_CART_START,
+    }
+}
+
+export const removeItemFromCartSuccess = () => {
+    return {
+        type: actionTypes.REMOVE_ITEM_FROM_CART_SUCCESS,
+    }
+}
+
+export const removeItemFromCartFail = (error) => {
+    return {
+        type: actionTypes.REMOVE_ITEM_FROM_CART_FAIL,
+        error: error
+    }
+}

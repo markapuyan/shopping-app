@@ -15,8 +15,6 @@ export function* authenticateSaga(action) {
         yield put(actions.authenticateSuccess(response.data.idToken, response.data.localId, action.data.email))
         yield put(actions.fetchCartDetail())
         yield put(actions.checkAuthTimeout(response.data.expiresIn))
-
-
     } catch(error) {
         yield put(actions.authenticateFail(error))
     }

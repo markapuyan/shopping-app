@@ -5,7 +5,8 @@ import {
     fetchProductsSaga,
     fetchProductDetailSaga,
     addToCartSaga,
-    fetchCartDetailSaga
+    fetchCartDetailSaga,
+    removeItemFromCartSaga
 } from './products'
 import {
     authenticateSaga,
@@ -19,7 +20,8 @@ export function* watchProducts(action) {
         takeEvery(actionTypes.INIT_FETCH_PRODUCTS, fetchProductsSaga),
         takeEvery(actionTypes.INIT_FETCH_PRODUCT_DETAIL, fetchProductDetailSaga),
         takeEvery(actionTypes.ADD_TO_CART, addToCartSaga),
-        takeEvery(actionTypes.FETCH_CART_DETAIL, fetchCartDetailSaga)
+        takeEvery(actionTypes.FETCH_CART_DETAIL, fetchCartDetailSaga),
+        takeEvery(actionTypes.REMOVE_ITEM_FROM_CART, removeItemFromCartSaga)
     ])  
 }
 
@@ -29,6 +31,5 @@ export function* watchAuthenticate(action) {
         takeEvery(actionTypes.CHECK_AUTHENTICATE, checkAuthenticateSaga),
         takeEvery(actionTypes.CHECK_AUTH_TIMEOUT, checkAuthTimeoutSaga),
         takeEvery(actionTypes.INIT_AUTH_LOGOUT, logoutSaga)
-
     ])
 }
