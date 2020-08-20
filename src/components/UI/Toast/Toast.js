@@ -3,7 +3,6 @@ import './Toast.scss'
 import Auxilliary from 'hoc/Auxilliary/Auxilliary';
 import Backdrop from 'components/UI/Backdrop/Backdrop';
 const Toast = props => {
-    console.log(props)
     let toastClass = ['toast__main', props.visible ? 'toast__main--show' : 'toast__main--hide'];
     return (
         <Auxilliary>
