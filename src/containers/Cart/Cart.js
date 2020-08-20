@@ -53,7 +53,6 @@ const Cart = React.memo(props => {
     }
 
     const onRemoveItemHandler = (itemData) => {
-        console.log(itemDetail)
         setCurrentItem(itemData)
         setIsToastOpen(!isToastOpen)
     }
@@ -69,7 +68,7 @@ const Cart = React.memo(props => {
             </Auxilliary>
         )
     }
-    console.log(itemDetail)
+
     if(!isLoading) {
         if (checkIfArrayIsNull(props.cartDetail)) {
             cartDetail = formatCartData(props.cartDetail || []).map((item, index) => {
