@@ -53,3 +53,35 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .item {
+        &__main {
+            width: 43%;
+        }
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 695px) {
+    .item {
+        &__main {
+            width: 43%;
+        }
+    }
+}
+
+@media only screen and (min-width: 696px) and (max-width: 768px) {
+    .item {
+        &__main {
+            width: 29%;
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 983px) {
+    .item {
+        &__main {
+            width: 21%;
+        }
+    }
+}

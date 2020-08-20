@@ -1,6 +1,6 @@
 .search-itemlist{
     &__main {
-        width: 85%;
+        width: 100%;
         text-align: left;
         padding: 10px;
     }
@@ -8,5 +8,13 @@
     &__group {
         display: flex;
         flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .search-itemlist {
+        &__main {
+            width: 100%;
+        }
     }
 }

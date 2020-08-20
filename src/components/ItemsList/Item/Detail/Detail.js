@@ -24,7 +24,6 @@ const Detail = React.memo(props => {
         props.onFetchItemDetail(code)
     }, [])
 
-
     const quantityHandler = (type, quantity) => {
         if(type == 'add' && count < quantity) {
             setCount(count + 1)

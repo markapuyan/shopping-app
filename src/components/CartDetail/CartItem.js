@@ -19,11 +19,11 @@ const CartItem = props => {
                 </div>
             </div>
             <div className="cart__main--cell cart__main--cell--item">
-                <h6>Quantity</h6>{itemData.count}</div>
+                <label>Quantity</label>{itemData.count}</div>
             <div className="cart__main--cell cart__main--cell--item">
-                <h6>Price</h6>{itemData.price}</div>
+                <label>Price</label>{itemData.price}</div>
             <div className="cart__main--cell cart__main--cell--item">
-                <h6>Sub Total</h6>{itemData.count * itemData.price}</div>
+                <label>Sub Total</label>{itemData.count * itemData.price}</div>
         </div>
     );
 };
