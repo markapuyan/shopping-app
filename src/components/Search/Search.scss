@@ -24,22 +24,14 @@
     }
 
     &__submit {
-        border: 0;
-        flex-grow: 1;
-        outline: none;
-        background: $highlight-primary-color;
-        color:  $base-primary-color;
         padding: 10px;
         border-radius: 0 5px 5px 0;
         font-weight: bold;
-        cursor: pointer;
         margin: 0;
     }
 }
 
-
 @media (max-width: 500px) {
-
     .search__div {
         width: auto;
     }

@@ -66,11 +66,9 @@ const Cart = React.memo(props => {
                     <button className="base__button--inverted">OK</button>
                     <button className="base__button--inverted--danger">CANCEL</button>
                 </div>
-                
             </Auxilliary>
-            
         )
-    }   
+    }
     console.log(itemDetail)
     if(!isLoading) {
         if (checkIfArrayIsNull(props.cartDetail)) {
@@ -83,7 +81,6 @@ const Cart = React.memo(props => {
                     isIncluded={checkIfArrayIsNull(checkedValue)}
                     click={onRemoveItemHandler}/>
             })
-
         } else {
             cartDetail = <div className="no-result">
                 <Empty/>
