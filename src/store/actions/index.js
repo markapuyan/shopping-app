@@ -15,7 +15,11 @@ export {
     fetchCartDetail,
     fetchCartDetailStart,
     fetchCartDetailSuccess,
-    fetchCartDetailFail
+    fetchCartDetailFail,
+    removeItemFromCart,
+    removeItemFromCartStart,
+    removeItemFromCartSuccess,
+    removeItemFromCartFail
 } from './products'
 
 export {

@@ -10,13 +10,16 @@ import Empty from 'components/UI/Empty/Empty';
 import Toast from 'components/UI/Toast/Toast'
 import { formatCartData, checkIfArrayIsNull } from 'shared/utility.js'
 import { ShoppingCartOutlined } from '@ant-design/icons'
+import * as actions from 'store/actions'
 import './Cart.scss'
-const Cart = React.memo(props => {
-
-    const { isLoading } = props;
+import { useHistory } from 'react-router';
+const Cart = props => {
+    const history = useHistory();
+    const { isLoading, cartDetailList } = props;
     const [cartTotal, setCartTotal] = useState([])
     const [isToastOpen, setIsToastOpen] = useState(false)
     const [currentItem, setCurrentItem] = useState({})
+
     let cartDetail = <Spinner/>;
     let total = cartTotal.reduce((a, b) => a + (b.price || 0), 0);
     let itemDetail = null
@@ -42,7 +45,7 @@ const Cart = React.memo(props => {
 
     const setCartTotalPrice = () => {
         let tempTotal = []
-        formatCartData(props.cartDetail || []).map((item, index) =>{
+        formatCartData(cartDetailList || []).map((item, index) =>{
             let cTotal = {
                 id: item.product_id,
                 price: item.count * item.price
@@ -53,25 +56,32 @@ const Cart = React.memo(props => {
     }
 
     const onRemoveItemHandler = (itemData) => {
+        console.log(itemData)
         setCurrentItem(itemData)
         setIsToastOpen(!isToastOpen)
     }
 
+    const onRemoveItemFromCartHandler = () => {
+        props.onRemoveItemFromCart(currentItem)
+        setIsToastOpen(!isToastOpen)
+        props.onFetchCartDetail()
+        // history.go('/cart')
+    }
     if(isToastOpen) {
         itemDetail = (
             <Auxilliary>
                 <h4>{currentItem.name} x {currentItem.count}</h4>
                 <div>
-                    <button className="base__button--inverted">OK</button>
-                    <button className="base__button--inverted--danger">CANCEL</button>
+                    <button onClick={onRemoveItemFromCartHandler} className="base__button">OK</button>
+                    <button className="base__button--danger">CANCEL</button>
                 </div>
             </Auxilliary>
         )
     }
 
     if(!isLoading) {
-        if (checkIfArrayIsNull(props.cartDetail)) {
-            cartDetail = formatCartData(props.cartDetail || []).map((item, index) => {
+        if (checkIfArrayIsNull(cartDetailList)) {
+            cartDetail = formatCartData(cartDetailList || []).map((item, index) => {
                 let checkedValue = cartTotal.filter(cartItem => cartItem.id == item.product_id)
                 return <CartItem
                     key={index}
@@ -96,19 +106,25 @@ const Cart = React.memo(props => {
             <h1 className="base__title"><ShoppingCartOutlined/> Cart</h1>
             <CartHeader/>
                 {cartDetail}
-                {checkIfArrayIsNull(props.cartDetail) && <Auxilliary>
+                {checkIfArrayIsNull(cartDetailList) && <Auxilliary>
                     <CartFooter total={total}/>
                     <CartCheckout count={cartTotal.length}/>
                 </Auxilliary>}
         </div>
     );
-});
+}
 
 const mapStateToProps = state => {
     return {
         isLoading: state.products.isLoading,
-        cartDetail: state.products.cartDetail
+        cartDetailList: state.products.cartDetail
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => {
+   return {
+       onRemoveItemFromCart: (itemData)=> dispatch(actions.removeItemFromCart(itemData)),
+       onFetchCartDetail: ()=> dispatch(actions.fetchCartDetail())
+   } 
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

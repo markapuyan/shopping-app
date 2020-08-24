@@ -21,12 +21,24 @@
         border: 2px solid $highlight-secondary-color;
     }
 
+    &--danger{
+        @include base__button_prop;
+        background: $red-accent-color;
+        border: 2px solid $red-accent-color;
+        color: #FFF;
+    }
+
     &--inverted {
         @include base__button_prop;
         background: transparent;
         border: 2px solid $highlight-primary-color;
         color: $highlight-primary-color;
 
+        &:hover {
+            background: $highlight-primary-color;
+            border: 2px solid $highlight-primary-color;
+            color: $base-primary-color;
+        }
         &--danger {
             @include base__button_prop;
             background: transparent;
@@ -40,11 +52,7 @@
             }
         }
 
-        &:hover {
-            background: $highlight-primary-color;
-            border: 2px solid $highlight-primary-color;
-            color: #FFF;
-        }
+       
     }
 
     &--sm {
