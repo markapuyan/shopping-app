@@ -6,7 +6,8 @@ import {
     fetchProductDetailSaga,
     addToCartSaga,
     fetchCartDetailSaga,
-    removeItemFromCartSaga
+    removeItemFromCartSaga,
+    removeAllItemFromCartSaga
 } from './products'
 import {
     authenticateSaga,
@@ -21,7 +22,8 @@ export function* watchProducts(action) {
         takeEvery(actionTypes.INIT_FETCH_PRODUCT_DETAIL, fetchProductDetailSaga),
         takeEvery(actionTypes.ADD_TO_CART, addToCartSaga),
         takeEvery(actionTypes.FETCH_CART_DETAIL, fetchCartDetailSaga),
-        takeEvery(actionTypes.REMOVE_ITEM_FROM_CART, removeItemFromCartSaga)
+        takeEvery(actionTypes.REMOVE_ITEM_FROM_CART, removeItemFromCartSaga),
+        takeEvery(actionTypes.REMOVE_ALL_ITEM_FROM_CART, removeAllItemFromCartSaga)
     ])
 }
 

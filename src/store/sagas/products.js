@@ -71,3 +71,14 @@ export function* removeItemFromCartSaga(action){
 async function removeItemSaga(item) {
     const response = await axios.delete(`/addtocart/${item}.json`)
 }
+
+export function* removeAllItemFromCartSaga(action) {
+    yield put(actions.removeItemFromCartStart())
+    try {
+        const response = yield all(action.cartDetail.map(item => call(removeItemSaga, item.id)))
+        yield put(actions.removeItemFromCartSuccess())
+        yield put(actions.fetchCartDetail())
+    } catch(error) {
+        yield put(actions.removeItemFromCartFail())
+    }
+}

@@ -138,3 +138,10 @@ export const removeItemFromCartFail = (error) => {
         error: error
     }
 }
+
+export const removeAllItemFromCart = (cartDetail) => {
+    return {
+        type: actionTypes.REMOVE_ALL_ITEM_FROM_CART,
+        cartDetail: cartDetail
+    }
+}
