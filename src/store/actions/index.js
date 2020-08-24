@@ -19,7 +19,7 @@ export {
     removeItemFromCart,
     removeItemFromCartStart,
     removeItemFromCartSuccess,
-    removeItemFromCartFail
+    removeItemFromCartFail,
 } from './products'
 
 export {

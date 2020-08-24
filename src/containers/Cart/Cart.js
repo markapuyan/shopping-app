@@ -25,10 +25,8 @@ const Cart = props => {
     let itemDetail = null
 
     useEffect(() => {
-        if(!isLoading) {
-            setCartTotalPrice()
-        }
-    }, [isLoading])
+        setCartTotalPrice()
+    }, [cartDetailList])
 
     const priceHandler = (id, price) => {
         let priceArray = [...cartTotal];
@@ -64,14 +62,12 @@ const Cart = props => {
     const onRemoveItemFromCartHandler = () => {
         props.onRemoveItemFromCart(currentItem)
         setIsToastOpen(!isToastOpen)
-        props.onFetchCartDetail()
-        // history.go('/cart')
     }
     if(isToastOpen) {
         itemDetail = (
             <Auxilliary>
                 <h4>{currentItem.name} x {currentItem.count}</h4>
-                <div>
+                <div className="cart__toast--footer">
                     <button onClick={onRemoveItemFromCartHandler} className="base__button">OK</button>
                     <button className="base__button--danger">CANCEL</button>
                 </div>
