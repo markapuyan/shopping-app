@@ -19,6 +19,8 @@ const Cart = props => {
     const [cartTotal, setCartTotal] = useState([])
     const [isToastOpen, setIsToastOpen] = useState(false)
     const [currentItem, setCurrentItem] = useState({})
+    const [isRemoveItem, setIsRemoveItem] = useState(false)
+    const [isRemoveAllItem, setIsRemoveAllItem] = useState(false)
 
     let cartDetail = <Spinner/>;
     let total = cartTotal.reduce((a, b) => a + (b.price || 0), 0);
@@ -56,19 +58,44 @@ const Cart = props => {
     const onRemoveItemHandler = (itemData) => {
         console.log(itemData)
         setCurrentItem(itemData)
+        setIsRemoveItem(true)
         setIsToastOpen(!isToastOpen)
     }
 
     const onRemoveItemFromCartHandler = () => {
         props.onRemoveItemFromCart(currentItem)
         setIsToastOpen(!isToastOpen)
+        setIsRemoveItem(false)
     }
-    if(isToastOpen) {
+
+    const onClearAllItemHandler = () => {
+        console.log(cartTotal);
+        setIsRemoveAllItem(true)
+        setIsToastOpen(!isToastOpen)
+
+    }
+    const onClearAllItemFromCartHandler = () => {
+        props.onRemoveAllItemFromCart(cartDetailList)
+        setIsToastOpen(!isToastOpen)
+        setIsRemoveAllItem(false)
+    }
+
+    if(isToastOpen && isRemoveItem) {
         itemDetail = (
             <Auxilliary>
                 <h4>{currentItem.name} x {currentItem.count}</h4>
                 <div className="cart__toast--footer">
                     <button onClick={onRemoveItemFromCartHandler} className="base__button">OK</button>
+                    <button className="base__button--danger">CANCEL</button>
+                </div>
+            </Auxilliary>
+        )
+    }
+    if(isToastOpen && isRemoveAllItem) {
+        itemDetail = (
+            <Auxilliary>
+                <div className="cart__toast--footer">
+                    <button onClick={onClearAllItemFromCartHandler} className="base__button">OK</button>
                     <button className="base__button--danger">CANCEL</button>
                 </div>
             </Auxilliary>
@@ -93,10 +120,14 @@ const Cart = props => {
             </div>
         }
     }
+
+    let toastTitle = isRemoveAllItem ? 'Are you sure you want to remove all item from cart?':
+                        'Are you sure you want to remove item from cart?'
     return (
         <div className="cart__main">
-            <Toast visible={isToastOpen}
-                title="Are you sure you want to remove item from cart?">
+            <Toast 
+                visible={isToastOpen}
+                title={toastTitle}>
                 {itemDetail}
             </Toast>
             <h1 className="base__title"><ShoppingCartOutlined/> Cart</h1>
@@ -104,7 +135,9 @@ const Cart = props => {
                 {cartDetail}
                 {checkIfArrayIsNull(cartDetailList) && <Auxilliary>
                     <CartFooter total={total}/>
-                    <CartCheckout count={cartTotal.length}/>
+                    <CartCheckout 
+                    count={cartTotal.length}
+                    clear={onClearAllItemHandler}/>
                 </Auxilliary>}
         </div>
     );
@@ -120,6 +153,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
    return {
        onRemoveItemFromCart: (itemData)=> dispatch(actions.removeItemFromCart(itemData)),
+       onRemoveAllItemFromCart: (cartDetailList) => dispatch(actions.removeAllItemFromCart(cartDetailList)),
        onFetchCartDetail: ()=> dispatch(actions.fetchCartDetail())
    } 
 }

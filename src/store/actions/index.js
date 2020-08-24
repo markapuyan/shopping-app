@@ -20,6 +20,7 @@ export {
     removeItemFromCartStart,
     removeItemFromCartSuccess,
     removeItemFromCartFail,
+    removeAllItemFromCart
 } from './products'
 
 export {
