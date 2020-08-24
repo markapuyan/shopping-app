@@ -2,7 +2,6 @@ import { put, all, call } from 'redux-saga/effects'
 import * as actions from '../actions/index'
 import axios from '../../shared/request/axios-shop'
 import { capitalize, formatResponseData } from '../../shared/utility'
-import { PushpinTwoTone } from '@ant-design/icons'
 
 export function* fetchProductsSaga(action) {
     const filter = capitalize(action.query)
@@ -58,21 +57,17 @@ export function* fetchCartDetailSaga(action) {
 
 export function* removeItemFromCartSaga(action){
     yield put(actions.removeItemFromCartStart())
-    
     let productIdArr = [].concat(action.itemData.id)
     yield console.log(productIdArr)
     try {
         const response = yield all(productIdArr.map(item => call(removeItemSaga, item)));
         yield put(actions.removeItemFromCartSuccess())
+        yield put(actions.fetchCartDetail())
     } catch (error) {
         yield put(actions.removeItemFromCartFail())
     }
 }
 
-export function* removeItemSaga(item) {
-    try {
-        const response = axios.delete(`/addtocart/${item}.json`)
-    } catch(error) {
-        yield put(actions.removeItemFromCartFail())
-    }
+async function removeItemSaga(item) {
+    const response = await axios.delete(`/addtocart/${item}.json`)
 }

@@ -122,6 +122,16 @@
     }
   }
 }
+
+.cart__toast--footer {
+  display: flex;
+
+  button {
+    width: 50%;
+    margin: 0 5px;
+  }
+}
+
 @media all and (max-width: 768px) {
     .cart__main--table--collapse {
       display: block;

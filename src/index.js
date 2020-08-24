@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import 'assets/scss/main.scss'
 import './index.css';
 import App from './App';
@@ -10,6 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 import reducer from './store/reducers'
 import { Provider } from 'react-redux';
+import history from 'shared/history/history'
 import { watchProducts, watchAuthenticate } from './store/sagas';
 
 const sagaMiddleware = createSagaMiddleware()
@@ -20,9 +21,9 @@ sagaMiddleware.run(watchProducts)
 sagaMiddleware.run(watchAuthenticate)
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>
 )
 ReactDOM.render(app, document.getElementById('root'));
